@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/01_JavaWeb/01_JavaWeb.iml" filepath="$PROJECT_DIR$/01_JavaWeb/01_JavaWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02_JavaWeb/02_JavaWeb.iml" filepath="$PROJECT_DIR$/02_JavaWeb/02_JavaWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03_JavaWeb/03_JavaWeb.iml" filepath="$PROJECT_DIR$/03_JavaWeb/03_JavaWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04_JavaWeb/04_JavaWeb.iml" filepath="$PROJECT_DIR$/04_JavaWeb/04_JavaWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JDBC/JDBC.iml" filepath="$PROJECT_DIR$/JDBC/JDBC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JDBC/JDBC_01Connection/JDBC_01Connection.iml" filepath="$PROJECT_DIR$/JDBC/JDBC_01Connection/JDBC_01Connection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JDBC/JDBC_02CRUD/JDBC_02CRUD.iml" filepath="$PROJECT_DIR$/JDBC/JDBC_02CRUD/JDBC_02CRUD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JDBC/JDBC_03Connetion/JDBC_03Connetion.iml" filepath="$PROJECT_DIR$/JDBC/JDBC_03Connetion/JDBC_03Connetion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Java_JDBC_JavaWeb.iml" filepath="$PROJECT_DIR$/.idea/Java_JDBC_JavaWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Test/Test.iml" filepath="$PROJECT_DIR$/Test/Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xml/xml.iml" filepath="$PROJECT_DIR$/xml/xml.iml" />
+    </modules>
+  </component>
+</project>

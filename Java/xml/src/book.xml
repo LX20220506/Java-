@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<books>
+    <book sn="1001">
+        <name>时间简史</name>
+        <price>56.3</price>
+        <author>霍金</author>
+    </book>
+    <book sn="1002">
+        <name>红楼梦</name>
+        <price>88.5</price>
+        <author>曹雪芹</author>
+    </book>
+</books>

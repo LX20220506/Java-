@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Java/01_JavaWeb/01_JavaWeb.iml" filepath="$PROJECT_DIR$/Java/01_JavaWeb/01_JavaWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java/02_JavaWeb/02_JavaWeb.iml" filepath="$PROJECT_DIR$/Java/02_JavaWeb/02_JavaWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java/03_JavaWeb/03_JavaWeb.iml" filepath="$PROJECT_DIR$/Java/03_JavaWeb/03_JavaWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java/04_JavaWeb/04_JavaWeb.iml" filepath="$PROJECT_DIR$/Java/04_JavaWeb/04_JavaWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java/JDBC/JDBC_01Connection/JDBC_01Connection.iml" filepath="$PROJECT_DIR$/Java/JDBC/JDBC_01Connection/JDBC_01Connection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java/JDBC/JDBC_02CRUD/JDBC_02CRUD.iml" filepath="$PROJECT_DIR$/Java/JDBC/JDBC_02CRUD/JDBC_02CRUD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java/JDBC/JDBC_03Connetion/JDBC_03Connetion.iml" filepath="$PROJECT_DIR$/Java/JDBC/JDBC_03Connetion/JDBC_03Connetion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java/xml/xml.iml" filepath="$PROJECT_DIR$/Java/xml/xml.iml" />
+    </modules>
+  </component>
+</project>

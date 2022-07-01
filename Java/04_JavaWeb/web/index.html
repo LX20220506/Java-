@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h1 class="title">水果管理系统</h1>
+<table>
+    <thead>
+        <tr>
+            <th>名称8</th>
+            <th>价格</th>
+            <th>库存</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td th:text="dasljd">名称</td>
+        <td >9</td>
+        <td >2</td>
+        <td><a href="#">删除</a></td>
+    </tr>
+        <tr th:each="fruit :${data}">
+            <td th:text="${fruit.FName}">名称</td>
+            <td th:text="${fruit.Price}">9</td>
+            <td th:text="${fruit.FCount}">2</td>
+            <td><a href="#">删除</a></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

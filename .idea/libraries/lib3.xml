@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="lib3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Java/03_JavaWeb/web/WEB-INF/lib/thymeleaf-3.0.2.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Java/03_JavaWeb/web/WEB-INF/lib/slf4j-log4j12-2.15.0-rc2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Java/03_JavaWeb/web/WEB-INF/lib/slf4j-api-2.15.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

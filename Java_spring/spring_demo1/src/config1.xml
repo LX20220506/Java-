@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--  有参构造函数注入  -->
+    <bean id="book" class="BookDemo.Book">
+        <!--   constructor-arg：在构造参数中，为属性赋值
+                name：表示构造函数中，传入的属性名称
+                value：表示要设置的值
+                -->
+        <constructor-arg name="name" value="九阳神功"></constructor-arg>
+    </bean>
+
+
+</beans>

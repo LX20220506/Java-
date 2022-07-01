@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--  构造函数注入引用类型  -->
+    <bean id="UserServlet" class="UserDemo.Servlet.UserServlet">
+        <!--   通过ref来指定注入的类型
+                   前提是要在外面注册一个对应的类型-->
+        <constructor-arg name="userDao" ref="UserDaoImpl"/>
+    </bean>
+    <bean id="UserDaoImpl" class="UserDemo.Dao.UserDaoImpl"></bean>
+</beans>

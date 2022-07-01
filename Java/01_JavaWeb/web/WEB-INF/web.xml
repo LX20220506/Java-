@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    
+    <servlet>
+        <servlet-name>Add</servlet-name>
+        <servlet-class>com.JavaWeb.AddServlet</servlet-class>
+
+        <!-- 配置Servlet启动顺序 -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Add</servlet-name>
+        <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+
+    <!--
+        <servlet>标签是设置后端文件路径的
+            <servlet-name>标签设置后端文件的名称，要和<servlet-mapping>标签中的<servlet-name>对应
+            <servlet-class>标签是指向后端类文；
+        <servlet-mapping>标签是设置url的
+            <servlet-name>标签指定url路径名称，要和<servlet>标签的<servlet-name>对应
+            <url-pattern>标签指访问数据的url
+        用户通过/add进来，然后找到/add的<servlet-name>标签，通过<servlet-name>标签去<servlet>标签中寻找指定的类文件
+     -->
+</web-app>
