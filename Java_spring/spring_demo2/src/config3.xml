@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--FactoryBan配置-->
+    <bean id="myBean" class="com.entity.MyBean"></bean>
+
+    <!--bean作用域
+        scope属性设置作用域
+            singleton：默认值；表示是单例对象
+            prototype：表示是多例对象
+    -->
+<!--    <bean id="user" class="com.entity.User" scope="singleton" />-->
+    <bean id="user" class="com.entity.User" scope="prototype" />
+
+    <!--配置bean的生命周期
+            init-method：该属性指定初始化方法
+            destroy-method：该属性指定销毁方法
+    -->
+    <bean id="order" class="com.entity.Order" init-method="initMethod" destroy-method="destroyMethod">
+        <property name="oname" value="order1"/>
+    </bean>
+</beans>

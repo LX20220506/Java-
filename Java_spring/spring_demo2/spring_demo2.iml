@@ -3,12 +3,8 @@
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
       <configuration>
-        <fileset id="fileset" name="Spring 应用程序上下文" removed="false">
-          <file>file://$MODULE_DIR$/src/application.xml</file>
-          <file>file://$MODULE_DIR$/src/config2.xml</file>
-          <file>file://$MODULE_DIR$/src/config3.xml</file>
+        <fileset id="fileset" name="Config1" removed="false">
           <file>file://$MODULE_DIR$/src/config1.xml</file>
-          <file>file://$MODULE_DIR$/src/config4.xml</file>
         </fileset>
       </configuration>
     </facet>
@@ -24,6 +20,7 @@
       <library name="commons-logging-1.1.1">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/commons-logging-1.1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/junit-4.11.jar!/" />
           <root url="jar://$MODULE_DIR$/lib/spring-beans-5.3.21.jar!/" />
           <root url="jar://$MODULE_DIR$/lib/spring-context-5.3.21.jar!/" />
           <root url="jar://$MODULE_DIR$/lib/spring-core-5.3.21.jar!/" />
