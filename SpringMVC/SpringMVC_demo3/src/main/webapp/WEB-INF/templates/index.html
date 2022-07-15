@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+    <div id="app" >
+        <a th:href="@{/responseBody}" >ResponseBody的响应数据</a><br>
+        <a th:href="@{/testDown}" >ResponseEntity下载文件</a><br>
+        <a th:href="@{/responseBodyByAjax}" @click="testAjax">通过ajax请求响应数据</a>
+        <form method="post" th:action="@{/testUp}" enctype="multipart/form-data">
+            头像：<input type="file" name="photo">
+            <input type="submit" value="提交">
+        </form>
+    </div>
+</body>
+
+<script type="text/javascript" th:src="@{/static/js/vue.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/axios.min.js}"></script>
+
+<script type="text/javascript" >
+    var vue =new Vue({
+        el:"#app",
+        methods:{
+            testAjax:function (event){
+                axios({
+                    method:"post",
+                    url:event.target.href,
+                    params:{
+                        name:"admin",
+                        pwd:"123456"
+                    }
+                }).then(function (response){
+                    alert(response.data);
+                });
+                event.preventDefault();
+            }
+        }
+    });
+</script>
+
+</html>

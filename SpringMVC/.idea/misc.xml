@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/Spring_MVC_rset" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringMVC_Annotation" />
     <file type="web" url="file://$PROJECT_DIR$/SpringMVC_demo1" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringMVC_demo2" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringMVC_demo3" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/SpringMVC_demo1/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringMVC_demo2/pom.xml" />
+        <option value="$PROJECT_DIR$/Spring_MVC_rset/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringMVC_demo3/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringMVC_Annotation/pom.xml" />
       </list>
     </option>
   </component>

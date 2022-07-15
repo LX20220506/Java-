@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.ParameterMapper">
+
+    <!-- int insertUser(User user); -->
+    <insert id="insertUser">
+        insert into t_user values(null,#{name},#{password},#{sex})
+    </insert>
+
+    <!--void insertUserReturnId(User user);-->
+    <!--
+        useGeneratedKeys：设置返回自增的列
+        keyProperty：设置返回的自增键，放在哪个属性中
+    -->
+    <insert id="insertUserReturnId" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user values(null,#{name},#{password},#{sex})
+    </insert>
+
+    <!--  int deleteById(int id)  -->
+    <delete id="deleteById">
+        delete from t_user where id=#{id}
+    </delete>
+
+    <!--  User getUserById(int id);  -->
+    <select id="getUserById" resultType="user">
+        select * from t_user where id=#{id}
+    </select>
+
+    <!--List<User> getAllUser();-->
+    <select id="getAllUser" resultType="user">
+        select * from t_user
+    </select>
+
+    <!--  Map<String,Object> getUserByIdReturnMep();  -->
+    <select id="getUserByIdReturnMep" resultType="map">
+        select * from t_user where id=#{id}
+    </select>
+
+    <!--  Map<String,Object> getAllUserReturnMep();  -->
+    <select id="getAllUserReturnMep" resultType="map">
+        select * from t_user
+    </select>
+
+    <!--  List<Map<String,Object>> getAllUserReturnListMap();  -->
+    <select id="getAllUserReturnListMap" resultType="map">
+        select * from t_user
+    </select>
+
+    <!--  List<User> getLickSelect(@Param("context") String context);  -->
+    <select id="getLickSelect" resultType="user">
+        select * from t_user where name like "%"#{context}"%"
+    </select>
+
+    <!--  int deleteMord(@Param("ids") String ids);  -->
+    <delete id="deleteMord">
+        delete from t_user where id in (${ids})
+    </delete>
+
+    <!--List<User> getUserByTable(@Param("tableName") String tableName);-->
+    <select id="getUserByTable" resultType="user">
+        select * from ${tableName}
+    </select>
+
+    <!--int getCount();-->
+    <select id="getCount" resultType="int">
+        select count(*) from t_user
+    </select>
+
+
+</mapper>

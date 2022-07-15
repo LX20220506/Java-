@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.UserMapper">
+
+    <!--int insertUser();-->
+    <insert id="insertUser">
+        insert t_user values(null,"tom","123456","男")
+    </insert>
+
+    <!--int updateUser();-->
+    <update id="updateUser">
+        update t_user set name='jie' where id=1
+    </update>
+
+    <!--  int deleteUserById();  -->
+    <delete id="deleteUserById">
+        delete from t_user where id =3
+    </delete>
+
+    <!--User findUser();List<User> queryUser();-->
+    <select id="findUser" resultType="User">
+        select * from t_user where id=1
+    </select>
+
+    <!--List<User> queryUser();-->
+    <select id="queryUser" resultType="User">
+        select * from t_user
+    </select>
+
+</mapper>

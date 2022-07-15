@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>这是index</h1>
+<a th:href="@{/demo1(id='123')}">get参数传递--跳转到demo1</a><br/>
+<a th:href="@{/demo2/123}">get通过占位符参数传递--跳转到demo1</a>
+
+<form method="post" th:action="@{/demo3}">
+    名称：<input type="text" name="name" /><br/>
+    年龄：<input type="text" name="age" /><br/>
+    性别：<input type="text" name="sex" /><br/>
+    <input type="submit" value="提交">
+</form>
+
+<h1>-----------测试域对象-----------</h1>
+<a th:href="@{/ServletAPI}">测试使用ServletAPI创建request域对象</a><br/>
+<a th:href="@{/modelAndView}">测试使用ModelAndView创建request域对象</a><br/>
+<a th:href="@{/model}">测试使用model创建request域对象</a><br/>
+<a th:href="@{/map}">测试使用map创建request域对象</a><br/>
+<a th:href="@{/modelMap}">测试使用modelMap创建request域对象</a><br/>
+<h1>-----------测试重定向-----------</h1>
+<a th:href="@{/redirect}">测试使用modelMap创建request域对象</a><br/>
+<h1>-----------测试put请求-----------</h1>
+<a th:href="@{/testRSETful}">测试put请求提交数据</a><br/>
+
+</body>
+</html>

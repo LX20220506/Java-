@@ -10,4 +10,12 @@ public class testControler {
     public String index(){
         return "index";
     }
+
+    @RequestMapping("/demo1")
+    public String demo1(){
+        return "demo1";
+    }
+
+
+
 }
