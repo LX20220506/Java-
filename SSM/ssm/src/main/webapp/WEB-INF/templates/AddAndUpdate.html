@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}" >Title</title>
+</head>
+<body>
+    <h1 th:text="${title}"></h1>
+    <p>
+        <!--使用put修改图片时，会导致HiddenHttpMethodFilter失效；-->
+        <!--主要是上传照片需要设置form表单enctype="multipart/form-data"；-->
+        <!--导致Content-Type的类型不一样，导致put失效-->
+        <form th:action="@{${action}}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="_method" value="put" >
+        <input type="hidden" name="empId" th:value="${emp} ? ${emp.empId} :''">
+            姓名：<input type="text" name="empName" th:value="${emp} ? ${emp.empName} :''"><br/>
+            年龄：<input type="text" name="age" th:value="${emp} ? ${emp.age} :''"><br/>
+            性别：<input type="text" name="sex" th:value="${emp} ? ${emp.sex} :''"><br/>
+            <span th:if="${emp} == null">
+                图片：<input type="file" name="photo"><br/>
+            </span>
+            <input type="submit" value="提交">
+        </form>
+    </p>
+</body>
+</html>

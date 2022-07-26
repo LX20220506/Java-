@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" th:href="@{/static/bootstrap-4.6.1-dist/css/bootstrap.css}">
+</head>
+
+<body>
+
+    <div class="controls">
+        <div class="row">
+            <div class="col">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/dk}">地块管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">种植计划管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">药材生长情况管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">用户：<span th:text="${session.user}?${session.user.userName}:''"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div style="width:90%;margin: 0 auto">
+                    <table class="table .thead-light .thead-dark" >
+                        <tr>
+                            <th>气压</th>
+                            <th>风力</th>
+                            <th>风向</th>
+                            <th>日照辐射</th>
+                            <th>雨量</th>
+                        </tr>
+                        <tr>
+                            <td id="pressure">pressure</td>
+                            <td id="win_speed">win_speed</td>
+                            <td id="win">win【0】</td>
+                            <td id="uvDescription">uvDescription</td>
+                            <td>雨量</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/static/jquery-3.6.0.min.js}"></script>
+    <script>
+
+        $(function (){
+            $.get("https://v0.yiketianqi.com/api?unescape=1&version=v91&appid=43656176&appsecret=I42og6Lm&ext=&cityid=&city=",function (res){
+                var data=res.data[0];
+                $("#pressure").text(data.pressure);
+                $("#win_speed").text(data.win_speed);
+                $("#win").text(data.win[0]);
+                $("#uvDescription").text(data.uvDescription);
+            })
+        })
+
+    </script>
+
+</body>
+</html>

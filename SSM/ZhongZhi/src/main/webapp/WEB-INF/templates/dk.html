@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" th:href="@{/static/bootstrap-4.6.1-dist/css/bootstrap.css}">
+
+
+</head>
+<body>
+<!--删除时，使用表单删除-->
+<form method="post" id="convertForm" >
+    <input type="hidden" name="_method" value="delete">
+</form>
+
+
+<div class="controls">
+    <div class="row">
+        <div class="col">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/dk}">地块管理</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">种植计划管理</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">药材生长情况管理</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">用户：<span th:text="${session.user}?${session.user.userName}:''"></span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row" th:if="${session.user.isadmin}=='Y'">
+        <div class="col">
+            <a th:href="@{/add}" class="btn btn-info" >添加</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div style="width:90%;margin: 0 auto">
+                <table class="table .thead-light .thead-dark" >
+                    <tr>
+                        <th>编号</th>
+                        <th>地块名称</th>
+                        <th>负责人</th>
+                        <th>温度</th>
+                        <th>湿度</th>
+                        <th>PH值</th>
+                        <th>含氮量</th>
+                        <th>含磷量</th>
+                        <th>含锌量</th>
+                        <th>面积</th>
+                        <th>使用年限</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr th:each="item : ${dks}" >
+                        <td th:text="${item.dkid}?${item.dkid}:''">编号</td>
+                        <td th:text="${item.dkName}?${item.dkName}:''">地块名称</td>
+                        <td th:text="${item.user.userName}?${item.user.userName}:''">负责人</td>
+                        <td th:text="${item.dkWendu}?${item.dkWendu}:''">温度</td>
+                        <td th:text="${item.dkShidu}?${item.dkShidu}:''">湿度</td>
+                        <td th:text="${item.dkPh}?${item.dkPh}:''">PH值</td>
+                        <td th:text="${item.dkDan}?${item.dkDan}:''">含氮量</td>
+                        <td th:text="${item.dkLin}?${item.dkLin}:''">含磷量</td>
+                        <td th:text="${item.dkXin}?${item.dkXin}:''">含锌量</td>
+                        <td th:text="${item.dkMianji}?${item.dkMianji}:''">面积</td>
+                        <td th:text="${item.dkNianxian}?${item.dkNianxian}:''">使用年限</td>
+                        <td>
+                            <div class="col">
+                                <a th:href="@{'/update/'+${item.dkid}}" class="btn btn-primary" >修改</a>
+                            </div>
+                            <div class="col">
+                                <a onclick="f(this,event)" th:href="@{'/delete/'+${item.dkid}}" class="btn btn-danger" >删除</a>
+                                <script type="text/javascript">
+
+                                    function f(doc,event) {
+                                        var convertForm = document.getElementById("convertForm");
+
+                                        convertForm.action=doc.href;
+
+                                        convertForm.submit();
+
+                                        event.preventDefault();
+
+                                    }
+
+                                </script>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>展示数据</title>
+
+    <style>
+        img{
+            white:200px;
+            height: 200px;
+        }
+
+        table{
+            border-collapse: collapse;
+            border:1px black solid;
+        }
+
+        tr,td,th{
+            border:1px black solid;
+        }
+
+        th{
+           margin: 0 auto;
+        }
+
+        td{
+            padding: 10px;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+
+<div id="app">
+
+    <form method="post" th:action="@{/list}">
+        输入名称：<input type="text" name="name" th:value="${name}"> &nbsp;&nbsp;
+        <input type="submit" value="搜索">
+    </form>
+    <p><a th:href="@{/add}" >添加员工</a></p>
+
+    <table >
+        <tr controls="6">
+            <th>员工列表</th>
+        </tr>
+        <tr>
+            <th>编号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>图片</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="emp : ${emps}">
+            <th th:text="${emp.empId}">编号</th>
+            <th th:text="${emp.empName}">姓名</th>
+            <th th:text="${emp.sex}">性别</th>
+            <th th:text="${emp.age}">年龄</th>
+            <th ><img th:src="'./img/'+${emp.img}"/></th>
+            <th><a @click="deleteEmpById" th:href="@{'/delete/'+${emp.empId}}">删除</a>
+                <a th:href="@{'/update/' + ${emp.empId} }" >修改</a></th>
+        </tr>
+
+    </table>
+    <P><a th:href="@{/list/1/5}" >查看分页信息</a></P>
+
+    <form id="deleteform" method="post" >
+        <input type="hidden" name="_method" value="delete">
+    </form>
+</div>
+
+<script th:src="@{/static/vue.js}"></script>
+<script>
+    var vue =new Vue({
+        el:"#app",
+        methods:{
+            deleteEmpById:function (event){
+                //alert(111);
+                // 获取用于删除的form表单
+                var deleteform = document.getElementById("deleteform");
+                // 将连接删除的href赋值给删除表单的actio
+                deleteform.action=event.target.href;
+                // 执行表单的提交按钮
+                deleteform.submit();
+                // 阻止a标签的默认跳转行为
+                event.preventDefault();
+            }
+        }
+    });
+</script>
+
+
+</body>
+</html>

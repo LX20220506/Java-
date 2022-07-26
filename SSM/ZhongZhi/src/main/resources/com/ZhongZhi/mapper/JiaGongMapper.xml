@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ZhongZhi.mapper.JiaGongMapper" >
+  <resultMap id="BaseResultMap" type="com.ZhongZhi.entity.JiaGong" >
+    <id column="jg_id" property="jgId" jdbcType="INTEGER" />
+    <result column="yc_name" property="ycName" jdbcType="VARCHAR" />
+    <result column="yc_state" property="ycState" jdbcType="VARCHAR" />
+    <result column="yc_next_step" property="ycNextStep" jdbcType="VARCHAR" />
+    <result column="yc_repository" property="ycRepository" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    jg_id, yc_name, yc_state, yc_next_step, yc_repository
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ZhongZhi.entity.JiaGongExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_jia_gong
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_jia_gong
+    where jg_id = #{jgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_jia_gong
+    where jg_id = #{jgId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ZhongZhi.entity.JiaGongExample" >
+    delete from t_jia_gong
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ZhongZhi.entity.JiaGong" >
+    insert into t_jia_gong (jg_id, yc_name, yc_state, 
+      yc_next_step, yc_repository)
+    values (#{jgId,jdbcType=INTEGER}, #{ycName,jdbcType=VARCHAR}, #{ycState,jdbcType=VARCHAR}, 
+      #{ycNextStep,jdbcType=VARCHAR}, #{ycRepository,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ZhongZhi.entity.JiaGong" >
+    insert into t_jia_gong
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jgId != null" >
+        jg_id,
+      </if>
+      <if test="ycName != null" >
+        yc_name,
+      </if>
+      <if test="ycState != null" >
+        yc_state,
+      </if>
+      <if test="ycNextStep != null" >
+        yc_next_step,
+      </if>
+      <if test="ycRepository != null" >
+        yc_repository,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jgId != null" >
+        #{jgId,jdbcType=INTEGER},
+      </if>
+      <if test="ycName != null" >
+        #{ycName,jdbcType=VARCHAR},
+      </if>
+      <if test="ycState != null" >
+        #{ycState,jdbcType=VARCHAR},
+      </if>
+      <if test="ycNextStep != null" >
+        #{ycNextStep,jdbcType=VARCHAR},
+      </if>
+      <if test="ycRepository != null" >
+        #{ycRepository,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ZhongZhi.entity.JiaGongExample" resultType="java.lang.Integer" >
+    select count(*) from t_jia_gong
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_jia_gong
+    <set >
+      <if test="record.jgId != null" >
+        jg_id = #{record.jgId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ycName != null" >
+        yc_name = #{record.ycName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ycState != null" >
+        yc_state = #{record.ycState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ycNextStep != null" >
+        yc_next_step = #{record.ycNextStep,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ycRepository != null" >
+        yc_repository = #{record.ycRepository,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_jia_gong
+    set jg_id = #{record.jgId,jdbcType=INTEGER},
+      yc_name = #{record.ycName,jdbcType=VARCHAR},
+      yc_state = #{record.ycState,jdbcType=VARCHAR},
+      yc_next_step = #{record.ycNextStep,jdbcType=VARCHAR},
+      yc_repository = #{record.ycRepository,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ZhongZhi.entity.JiaGong" >
+    update t_jia_gong
+    <set >
+      <if test="ycName != null" >
+        yc_name = #{ycName,jdbcType=VARCHAR},
+      </if>
+      <if test="ycState != null" >
+        yc_state = #{ycState,jdbcType=VARCHAR},
+      </if>
+      <if test="ycNextStep != null" >
+        yc_next_step = #{ycNextStep,jdbcType=VARCHAR},
+      </if>
+      <if test="ycRepository != null" >
+        yc_repository = #{ycRepository,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where jg_id = #{jgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ZhongZhi.entity.JiaGong" >
+    update t_jia_gong
+    set yc_name = #{ycName,jdbcType=VARCHAR},
+      yc_state = #{ycState,jdbcType=VARCHAR},
+      yc_next_step = #{ycNextStep,jdbcType=VARCHAR},
+      yc_repository = #{ycRepository,jdbcType=VARCHAR}
+    where jg_id = #{jgId,jdbcType=INTEGER}
+  </update>
+</mapper>

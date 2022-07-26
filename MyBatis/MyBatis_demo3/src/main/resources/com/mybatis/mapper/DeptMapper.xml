@@ -9,4 +9,31 @@
         select * from t_dept where did=#{did}
     </select>
 
+    <!--  List<Emp> getEmpsById(@Param("did") int did);  -->
+    <!--第一种方式:直接使用collection-->
+    <!--<resultMap id="empsByIdResultMap" type="Dept">-->
+    <!--    <id property="did" column="did"></id>-->
+    <!--    <result property="deptName" column="dept_name"></result>-->
+    <!--    <collection property="emps" ofType="Emp">-->
+    <!--        <id property="eid" column="eid"></id>-->
+    <!--        <result property="empName" column="emp_name"></result>-->
+    <!--        <result property="sex" column="sex"></result>-->
+    <!--        <result property="age" column="age"></result>-->
+    <!--    </collection>-->
+    <!--</resultMap>-->
+    <!--<select id="getEmpsById" resultMap="empsByIdResultMap">-->
+    <!--    select * from t_emp left join t_dept on t_emp.did=t_dept.did where t_dept.did=#{did}-->
+    <!--</select>-->
+
+    <!--第二种方式-->
+    <!--List<Emp> getDeptAndEmpByStepOne(@Param("did") int did);-->
+    <resultMap id="deptAndEmpResultMap" type="Dept">
+        <id property="did" column="did"></id>
+        <result property="deptName" column="dept_name"></result>
+        <collection property="emps" column="did"
+                    select="com.mybatis.mapper.EmpMapper.getEmpByDeptId"></collection>
+    </resultMap>
+    <select id="getDeptAndEmpByStepOne" resultMap="deptAndEmpResultMap" >
+        select * from t_dept where did=#{did}
+    </select>
 </mapper>

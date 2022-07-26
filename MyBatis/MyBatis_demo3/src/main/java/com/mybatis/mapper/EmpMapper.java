@@ -16,4 +16,9 @@ public interface EmpMapper {
      */
     Emp getEmpAndDeptById(@Param("eid") int eid);
 
+    /**
+     * 根据部门编号查询
+     */
+    Emp getEmpByDeptId(@Param("did") int did);
+
 }

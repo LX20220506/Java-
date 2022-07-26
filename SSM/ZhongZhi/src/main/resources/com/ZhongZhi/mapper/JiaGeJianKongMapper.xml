@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ZhongZhi.mapper.JiaGeJianKongMapper" >
+  <resultMap id="BaseResultMap" type="com.ZhongZhi.entity.JiaGeJianKong" >
+    <id column="ycjd_id" property="ycjdId" jdbcType="INTEGER" />
+    <result column="yc_name" property="ycName" jdbcType="VARCHAR" />
+    <result column="yc_age" property="ycAge" jdbcType="INTEGER" />
+    <result column="yc_yjg_price" property="ycYjgPrice" jdbcType="INTEGER" />
+    <result column="yc_wjg_price" property="ycWjgPrice" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ycjd_id, yc_name, yc_age, yc_yjg_price, yc_wjg_price
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ZhongZhi.entity.JiaGeJianKongExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_yao_cai_jia_ge_jian_kong
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_yao_cai_jia_ge_jian_kong
+    where ycjd_id = #{ycjdId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_yao_cai_jia_ge_jian_kong
+    where ycjd_id = #{ycjdId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ZhongZhi.entity.JiaGeJianKongExample" >
+    delete from t_yao_cai_jia_ge_jian_kong
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ZhongZhi.entity.JiaGeJianKong" >
+    insert into t_yao_cai_jia_ge_jian_kong (ycjd_id, yc_name, yc_age, 
+      yc_yjg_price, yc_wjg_price)
+    values (#{ycjdId,jdbcType=INTEGER}, #{ycName,jdbcType=VARCHAR}, #{ycAge,jdbcType=INTEGER}, 
+      #{ycYjgPrice,jdbcType=INTEGER}, #{ycWjgPrice,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ZhongZhi.entity.JiaGeJianKong" >
+    insert into t_yao_cai_jia_ge_jian_kong
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ycjdId != null" >
+        ycjd_id,
+      </if>
+      <if test="ycName != null" >
+        yc_name,
+      </if>
+      <if test="ycAge != null" >
+        yc_age,
+      </if>
+      <if test="ycYjgPrice != null" >
+        yc_yjg_price,
+      </if>
+      <if test="ycWjgPrice != null" >
+        yc_wjg_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ycjdId != null" >
+        #{ycjdId,jdbcType=INTEGER},
+      </if>
+      <if test="ycName != null" >
+        #{ycName,jdbcType=VARCHAR},
+      </if>
+      <if test="ycAge != null" >
+        #{ycAge,jdbcType=INTEGER},
+      </if>
+      <if test="ycYjgPrice != null" >
+        #{ycYjgPrice,jdbcType=INTEGER},
+      </if>
+      <if test="ycWjgPrice != null" >
+        #{ycWjgPrice,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ZhongZhi.entity.JiaGeJianKongExample" resultType="java.lang.Integer" >
+    select count(*) from t_yao_cai_jia_ge_jian_kong
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_yao_cai_jia_ge_jian_kong
+    <set >
+      <if test="record.ycjdId != null" >
+        ycjd_id = #{record.ycjdId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ycName != null" >
+        yc_name = #{record.ycName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ycAge != null" >
+        yc_age = #{record.ycAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.ycYjgPrice != null" >
+        yc_yjg_price = #{record.ycYjgPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.ycWjgPrice != null" >
+        yc_wjg_price = #{record.ycWjgPrice,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_yao_cai_jia_ge_jian_kong
+    set ycjd_id = #{record.ycjdId,jdbcType=INTEGER},
+      yc_name = #{record.ycName,jdbcType=VARCHAR},
+      yc_age = #{record.ycAge,jdbcType=INTEGER},
+      yc_yjg_price = #{record.ycYjgPrice,jdbcType=INTEGER},
+      yc_wjg_price = #{record.ycWjgPrice,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ZhongZhi.entity.JiaGeJianKong" >
+    update t_yao_cai_jia_ge_jian_kong
+    <set >
+      <if test="ycName != null" >
+        yc_name = #{ycName,jdbcType=VARCHAR},
+      </if>
+      <if test="ycAge != null" >
+        yc_age = #{ycAge,jdbcType=INTEGER},
+      </if>
+      <if test="ycYjgPrice != null" >
+        yc_yjg_price = #{ycYjgPrice,jdbcType=INTEGER},
+      </if>
+      <if test="ycWjgPrice != null" >
+        yc_wjg_price = #{ycWjgPrice,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ycjd_id = #{ycjdId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ZhongZhi.entity.JiaGeJianKong" >
+    update t_yao_cai_jia_ge_jian_kong
+    set yc_name = #{ycName,jdbcType=VARCHAR},
+      yc_age = #{ycAge,jdbcType=INTEGER},
+      yc_yjg_price = #{ycYjgPrice,jdbcType=INTEGER},
+      yc_wjg_price = #{ycWjgPrice,jdbcType=INTEGER}
+    where ycjd_id = #{ycjdId,jdbcType=INTEGER}
+  </update>
+</mapper>
