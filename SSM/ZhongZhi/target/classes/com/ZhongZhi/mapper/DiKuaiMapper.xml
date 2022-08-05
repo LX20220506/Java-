@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ZhongZhi.mapper.DiKuaiMapper" >
+  <resultMap id="BaseResultMap" type="com.ZhongZhi.entity.DiKuai" >
+    <id column="dkid" property="dkid" jdbcType="INTEGER" />
+    <result column="dk_name" property="dkName" jdbcType="VARCHAR" />
+    <result column="dk_uid" property="dkUid" jdbcType="INTEGER" />
+    <result column="dk_wendu" property="dkWendu" jdbcType="INTEGER" />
+    <result column="dk_shidu" property="dkShidu" jdbcType="INTEGER" />
+    <result column="dk_PH" property="dkPh" jdbcType="INTEGER" />
+    <result column="dk_dan" property="dkDan" jdbcType="INTEGER" />
+    <result column="dk_lin" property="dkLin" jdbcType="INTEGER" />
+    <result column="dk_xin" property="dkXin" jdbcType="INTEGER" />
+    <result column="dk_mianji" property="dkMianji" jdbcType="INTEGER" />
+    <result column="dk_nianxian" property="dkNianxian" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    dkid, dk_name, dk_uid, dk_wendu, dk_shidu, dk_PH, dk_dan, dk_lin, dk_xin, dk_mianji, 
+    dk_nianxian
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ZhongZhi.entity.DiKuaiExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_di_kuai
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_di_kuai
+    where dkid = #{dkid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_di_kuai
+    where dkid = #{dkid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ZhongZhi.entity.DiKuaiExample" >
+    delete from t_di_kuai
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ZhongZhi.entity.DiKuai" >
+    insert into t_di_kuai (dkid, dk_name, dk_uid, 
+      dk_wendu, dk_shidu, dk_PH, 
+      dk_dan, dk_lin, dk_xin, 
+      dk_mianji, dk_nianxian)
+    values (#{dkid,jdbcType=INTEGER}, #{dkName,jdbcType=VARCHAR}, #{dkUid,jdbcType=INTEGER}, 
+      #{dkWendu,jdbcType=INTEGER}, #{dkShidu,jdbcType=INTEGER}, #{dkPh,jdbcType=INTEGER}, 
+      #{dkDan,jdbcType=INTEGER}, #{dkLin,jdbcType=INTEGER}, #{dkXin,jdbcType=INTEGER}, 
+      #{dkMianji,jdbcType=INTEGER}, #{dkNianxian,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ZhongZhi.entity.DiKuai" >
+    insert into t_di_kuai
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dkid != null" >
+        dkid,
+      </if>
+      <if test="dkName != null" >
+        dk_name,
+      </if>
+      <if test="dkUid != null" >
+        dk_uid,
+      </if>
+      <if test="dkWendu != null" >
+        dk_wendu,
+      </if>
+      <if test="dkShidu != null" >
+        dk_shidu,
+      </if>
+      <if test="dkPh != null" >
+        dk_PH,
+      </if>
+      <if test="dkDan != null" >
+        dk_dan,
+      </if>
+      <if test="dkLin != null" >
+        dk_lin,
+      </if>
+      <if test="dkXin != null" >
+        dk_xin,
+      </if>
+      <if test="dkMianji != null" >
+        dk_mianji,
+      </if>
+      <if test="dkNianxian != null" >
+        dk_nianxian,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dkid != null" >
+        #{dkid,jdbcType=INTEGER},
+      </if>
+      <if test="dkName != null" >
+        #{dkName,jdbcType=VARCHAR},
+      </if>
+      <if test="dkUid != null" >
+        #{dkUid,jdbcType=INTEGER},
+      </if>
+      <if test="dkWendu != null" >
+        #{dkWendu,jdbcType=INTEGER},
+      </if>
+      <if test="dkShidu != null" >
+        #{dkShidu,jdbcType=INTEGER},
+      </if>
+      <if test="dkPh != null" >
+        #{dkPh,jdbcType=INTEGER},
+      </if>
+      <if test="dkDan != null" >
+        #{dkDan,jdbcType=INTEGER},
+      </if>
+      <if test="dkLin != null" >
+        #{dkLin,jdbcType=INTEGER},
+      </if>
+      <if test="dkXin != null" >
+        #{dkXin,jdbcType=INTEGER},
+      </if>
+      <if test="dkMianji != null" >
+        #{dkMianji,jdbcType=INTEGER},
+      </if>
+      <if test="dkNianxian != null" >
+        #{dkNianxian,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ZhongZhi.entity.DiKuaiExample" resultType="java.lang.Integer" >
+    select count(*) from t_di_kuai
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_di_kuai
+    <set >
+      <if test="record.dkid != null" >
+        dkid = #{record.dkid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dkName != null" >
+        dk_name = #{record.dkName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dkUid != null" >
+        dk_uid = #{record.dkUid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dkWendu != null" >
+        dk_wendu = #{record.dkWendu,jdbcType=INTEGER},
+      </if>
+      <if test="record.dkShidu != null" >
+        dk_shidu = #{record.dkShidu,jdbcType=INTEGER},
+      </if>
+      <if test="record.dkPh != null" >
+        dk_PH = #{record.dkPh,jdbcType=INTEGER},
+      </if>
+      <if test="record.dkDan != null" >
+        dk_dan = #{record.dkDan,jdbcType=INTEGER},
+      </if>
+      <if test="record.dkLin != null" >
+        dk_lin = #{record.dkLin,jdbcType=INTEGER},
+      </if>
+      <if test="record.dkXin != null" >
+        dk_xin = #{record.dkXin,jdbcType=INTEGER},
+      </if>
+      <if test="record.dkMianji != null" >
+        dk_mianji = #{record.dkMianji,jdbcType=INTEGER},
+      </if>
+      <if test="record.dkNianxian != null" >
+        dk_nianxian = #{record.dkNianxian,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_di_kuai
+    set dkid = #{record.dkid,jdbcType=INTEGER},
+      dk_name = #{record.dkName,jdbcType=VARCHAR},
+      dk_uid = #{record.dkUid,jdbcType=INTEGER},
+      dk_wendu = #{record.dkWendu,jdbcType=INTEGER},
+      dk_shidu = #{record.dkShidu,jdbcType=INTEGER},
+      dk_PH = #{record.dkPh,jdbcType=INTEGER},
+      dk_dan = #{record.dkDan,jdbcType=INTEGER},
+      dk_lin = #{record.dkLin,jdbcType=INTEGER},
+      dk_xin = #{record.dkXin,jdbcType=INTEGER},
+      dk_mianji = #{record.dkMianji,jdbcType=INTEGER},
+      dk_nianxian = #{record.dkNianxian,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ZhongZhi.entity.DiKuai" >
+    update t_di_kuai
+    <set >
+      <if test="dkName != null" >
+        dk_name = #{dkName,jdbcType=VARCHAR},
+      </if>
+      <if test="dkUid != null" >
+        dk_uid = #{dkUid,jdbcType=INTEGER},
+      </if>
+      <if test="dkWendu != null" >
+        dk_wendu = #{dkWendu,jdbcType=INTEGER},
+      </if>
+      <if test="dkShidu != null" >
+        dk_shidu = #{dkShidu,jdbcType=INTEGER},
+      </if>
+      <if test="dkPh != null" >
+        dk_PH = #{dkPh,jdbcType=INTEGER},
+      </if>
+      <if test="dkDan != null" >
+        dk_dan = #{dkDan,jdbcType=INTEGER},
+      </if>
+      <if test="dkLin != null" >
+        dk_lin = #{dkLin,jdbcType=INTEGER},
+      </if>
+      <if test="dkXin != null" >
+        dk_xin = #{dkXin,jdbcType=INTEGER},
+      </if>
+      <if test="dkMianji != null" >
+        dk_mianji = #{dkMianji,jdbcType=INTEGER},
+      </if>
+      <if test="dkNianxian != null" >
+        dk_nianxian = #{dkNianxian,jdbcType=INTEGER},
+      </if>
+    </set>
+    where dkid = #{dkid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ZhongZhi.entity.DiKuai" >
+    update t_di_kuai
+    set dk_name = #{dkName,jdbcType=VARCHAR},
+      dk_uid = #{dkUid,jdbcType=INTEGER},
+      dk_wendu = #{dkWendu,jdbcType=INTEGER},
+      dk_shidu = #{dkShidu,jdbcType=INTEGER},
+      dk_PH = #{dkPh,jdbcType=INTEGER},
+      dk_dan = #{dkDan,jdbcType=INTEGER},
+      dk_lin = #{dkLin,jdbcType=INTEGER},
+      dk_xin = #{dkXin,jdbcType=INTEGER},
+      dk_mianji = #{dkMianji,jdbcType=INTEGER},
+      dk_nianxian = #{dkNianxian,jdbcType=INTEGER}
+    where dkid = #{dkid,jdbcType=INTEGER}
+  </update>
+
+  
+  <resultMap id="DiKuaiAndUserByStepResultMap" type="DiKuai">
+    <id property="dkid" column="dkid"/>
+    <result property="dkName" column="dk_name"/>
+    <result property="dkUid" column="dk_uid"/>
+    <result property="dkWendu" column="dk_wendu"/>
+    <result property="dkShidu" column="dk_shidu"/>
+    <result property="dkPh" column="dk_PH"/>
+    <result property="dkDan" column="dk_dan"/>
+    <result property="dkLin" column="dk_lin"/>
+    <result property="dkXin" column="dk_xin"/>
+    <result property="dkMianji" column="dk_mianji"/>
+    <result property="dkNianxian" column="dk_nianxian"/>
+    <association property="user" column="dk_uid" select="com.ZhongZhi.mapper.UserMapper.selectByPrimaryKey">
+    </association>
+  </resultMap>
+  
+  <!--List<DiKuai> selectByRole(User user);-->
+  <select id="selectByRole" resultMap="DiKuaiAndUserByStepResultMap" >
+    <!--SELECT * FROM t_di_kuai d,t_user u WHERE (d.dk_uid = u.uid OR U.isAdmin=#{isadmin}) AND u.uid=#{uid}-->
+    select * from t_di_kuai where dk_uid=#{uid} or 'Y'=#{isadmin}
+  </select>
+
+</mapper>

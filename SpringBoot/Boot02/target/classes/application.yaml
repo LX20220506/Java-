@@ -1,0 +1,56 @@
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/db_account?useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      stat-view-servlet:
+        enabled: true
+
+      filters: wall,stat  # 底层开启功能，stat（sql监控），wall（防火墙）
+
+      aop-patterns: com.boot.*  #监控SpringBean
+
+      web-stat-filter:     # 监控web
+        enabled: true
+        url-pattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+
+      filter:   # 对上面filters里面的stat的详细配置
+        wall:
+          enabled: true
+        stat:
+          enabled: true
+          log-slow-sql: true
+#  redis:
+#    host: 127.0.0.1
+#    port: 6379
+  boot:
+    admin:
+      client:
+        url: http://localhost:8100
+  application:
+    name: 'web服务1'
+  security:
+    user:
+      name: admin
+      password: 123456
+
+
+mybatis:
+#  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true  #开启驼峰命名法
+  type-aliases-package: com.boot.entity #以包为单位，设置改包下所有的类型都拥有默认的别名，即类名且不区分大小写
+
+#配置监控 actuator
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: '*'
+
+

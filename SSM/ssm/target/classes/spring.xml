@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--开启ioc扫描：不扫描注解为controller的类；controller注解的类交给springMVC扫描-->
+    <context:component-scan base-package="com.ssm">
+        <!--去除Controller注解的扫描-->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--引用properties资源文件，里面主要配置数据库连接-->
+    <context:property-placeholder location="classpath:jdbc.properties" ></context:property-placeholder>
+
+    <!--配置并注入数据源DruidDataSource-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+
+    <!--整合MyBatis-->
+    <!--注入一个SqlSessionFactoryBean类，这个类会返回一个SqlSessionFactory对象
+        我们可以通过SqlSessionFactory对象，创建映射接口对象，从而进行对数据库的操作（过于麻烦）；
+        我们可以通过MapperScannerConfigurer对象，直接将映射的接口对象注入到ioc容器，这样就可以直接使用映射接口对象-->
+    <bean id="SqlSessionFactoryBean"  class="org.mybatis.spring.SqlSessionFactoryBean">
+
+        <!--指定数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--设置类型别名所对应的包；例如：entity包中Emp类，可以写成Emp或emp-->
+        <property name="typeAliasesPackage" value="com.ssm.entity"></property>
+        <!-- 设置MyBatis配置文件的路径（可以不设置） -->
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+        <!--
+        设置映射文件的路径
+        若映射文件所在路径和mapper接口所在路径一致，则不需要设置
+        -->
+        <!--<property name="mapperLocations" value="classpath:mapper/*.xml"></property>-->
+
+        <!--configuration和configLocation不能同时使用-->
+        <!--<property name="configuration">-->
+        <!--    &lt;!&ndash;设置MyBatis核心配置文件中settings标签&ndash;&gt;-->
+        <!--    <bean class="org.apache.ibatis.session.Configuration">-->
+        <!--        &lt;!&ndash;设置驼峰命名法&ndash;&gt;-->
+        <!--        <property name="mapUnderscoreToCamelCase" value="true"/>-->
+        <!--    </bean>-->
+        <!--</property>-->
+
+        <!-- 分页插件
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+                            params=value1
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>-->
+    </bean>
+
+    <!--配置mapper接口的扫描注入
+        由mybatis-spring提供，可以将指定包下所有的mapper接口创建动态代理
+        通过注入的SqlSessionFactoryBean对象，创建mapper接口映射对象，并将对象放入ioc容器
+        这样可以直接在类中直接注入mapper对象-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="SqlSessionFactoryBean"></property>
+        <property name="basePackage" value="com.ssm.mapper"></property>
+    </bean>
+
+    <!--声明事务处理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--  配置事务管理器 需要指定装配的数据  -->
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!--开启使用注解声明事务功能-->
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+
+</beans>

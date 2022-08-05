@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加修改地块</title>
+    <link rel="stylesheet" th:href="@{/static/bootstrap-4.6.1-dist/css/bootstrap.css}">
+</head>
+<body>
+
+div class="controls">
+<div class="row">
+    <div class="col">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link active" th:href="@{/dk}">地块管理</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">种植计划管理</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">药材生长情况管理</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled">用户：<span th:text="${session.user}?${session.user.userName}:''"></span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col">
+        <form method="post" th:action="@{/AddAndUpdate}" >
+            <input type="hidden" name="_method" th:value="${dk}?'put':''">
+            <input type="hidden" name="dkid" th:value="${dk}?${dk.dkid}:''">
+            地块名称：<input type="text" name="dkName"  th:value="${dk}?${dk.dkName}:''"><br/>
+            负责人：<select name="dkUid" >
+                        <option value="" >--  请选择  --</option>
+                        <option th:each="item : ${users}"
+                                th:selected="${dk}?${item.uid eq dk.dkUid}:false"
+                                th:value="${item.uid}" th:text="${item.userName}"></option>
+                    </select>
+            <br/>
+            温度：<input type="text" name="dkWendu"  th:value="${dk}?${dk.dkWendu}:''"><br/>
+            湿度：<input type="text" name="dkShidu"  th:value="${dk}?${dk.dkShidu}:''"><br/>
+            PH值：<input type="text" name="dkPh"  th:value="${dk}?${dk.dkPh}:''"><br/>
+            含氮量：<input type="text" name="dkDan"  th:value="${dk}?${dk.dkDan}:''"><br/>
+            含磷量：<input type="text" name="dkLin"  th:value="${dk}?${dk.dkLin}:''"><br/>
+            含锌量：<input type="text" name="dkXin"  th:value="${dk}?${dk.dkXin}:''"><br/>
+            面积（亩）：<input type="text" name="dkMianji"  th:value="${dk}?${dk.dkMianji}:''"><br/>
+            使用年限：<input type="text" name="dkNianxian"  th:value="${dk}?${dk.dkNianxian}:''"><br/>
+            <input type="submit" value="提交">
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

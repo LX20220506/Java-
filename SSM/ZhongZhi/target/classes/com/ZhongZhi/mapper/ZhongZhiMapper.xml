@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ZhongZhi.mapper.ZhongZhiMapper" >
+  <resultMap id="BaseResultMap" type="com.ZhongZhi.entity.ZhongZhi" >
+    <id column="zid" property="zid" jdbcType="INTEGER" />
+    <result column="zz_name" property="zzName" jdbcType="VARCHAR" />
+    <result column="dkid" property="dkid" jdbcType="INTEGER" />
+    <result column="zuo_wu" property="zuoWu" jdbcType="VARCHAR" />
+    <result column="huan_jin" property="huanJin" jdbcType="VARCHAR" />
+    <result column="shi_jian" property="shiJian" jdbcType="VARCHAR" />
+    <result column="mian_ji" property="mianJi" jdbcType="VARCHAR" />
+    <result column="yu_ji_jin_e" property="yuJiJinE" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="VARCHAR" />
+    <result column="bei_zhu" property="beiZhu" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    zid, zz_name, dkid, zuo_wu, huan_jin, shi_jian, mian_ji, yu_ji_jin_e, uid, bei_zhu
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ZhongZhi.entity.ZhongZhiExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_zhong_zhi
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_zhong_zhi
+    where zid = #{zid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_zhong_zhi
+    where zid = #{zid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ZhongZhi.entity.ZhongZhiExample" >
+    delete from t_zhong_zhi
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ZhongZhi.entity.ZhongZhi" >
+    insert into t_zhong_zhi (zid, zz_name, dkid, 
+      zuo_wu, huan_jin, shi_jian, 
+      mian_ji, yu_ji_jin_e, uid, 
+      bei_zhu)
+    values (#{zid,jdbcType=INTEGER}, #{zzName,jdbcType=VARCHAR}, #{dkid,jdbcType=INTEGER}, 
+      #{zuoWu,jdbcType=VARCHAR}, #{huanJin,jdbcType=VARCHAR}, #{shiJian,jdbcType=VARCHAR}, 
+      #{mianJi,jdbcType=VARCHAR}, #{yuJiJinE,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, 
+      #{beiZhu,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ZhongZhi.entity.ZhongZhi" >
+    insert into t_zhong_zhi
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="zid != null" >
+        zid,
+      </if>
+      <if test="zzName != null" >
+        zz_name,
+      </if>
+      <if test="dkid != null" >
+        dkid,
+      </if>
+      <if test="zuoWu != null" >
+        zuo_wu,
+      </if>
+      <if test="huanJin != null" >
+        huan_jin,
+      </if>
+      <if test="shiJian != null" >
+        shi_jian,
+      </if>
+      <if test="mianJi != null" >
+        mian_ji,
+      </if>
+      <if test="yuJiJinE != null" >
+        yu_ji_jin_e,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="beiZhu != null" >
+        bei_zhu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="zid != null" >
+        #{zid,jdbcType=INTEGER},
+      </if>
+      <if test="zzName != null" >
+        #{zzName,jdbcType=VARCHAR},
+      </if>
+      <if test="dkid != null" >
+        #{dkid,jdbcType=INTEGER},
+      </if>
+      <if test="zuoWu != null" >
+        #{zuoWu,jdbcType=VARCHAR},
+      </if>
+      <if test="huanJin != null" >
+        #{huanJin,jdbcType=VARCHAR},
+      </if>
+      <if test="shiJian != null" >
+        #{shiJian,jdbcType=VARCHAR},
+      </if>
+      <if test="mianJi != null" >
+        #{mianJi,jdbcType=VARCHAR},
+      </if>
+      <if test="yuJiJinE != null" >
+        #{yuJiJinE,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="beiZhu != null" >
+        #{beiZhu,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ZhongZhi.entity.ZhongZhiExample" resultType="java.lang.Integer" >
+    select count(*) from t_zhong_zhi
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_zhong_zhi
+    <set >
+      <if test="record.zid != null" >
+        zid = #{record.zid,jdbcType=INTEGER},
+      </if>
+      <if test="record.zzName != null" >
+        zz_name = #{record.zzName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dkid != null" >
+        dkid = #{record.dkid,jdbcType=INTEGER},
+      </if>
+      <if test="record.zuoWu != null" >
+        zuo_wu = #{record.zuoWu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huanJin != null" >
+        huan_jin = #{record.huanJin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shiJian != null" >
+        shi_jian = #{record.shiJian,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mianJi != null" >
+        mian_ji = #{record.mianJi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuJiJinE != null" >
+        yu_ji_jin_e = #{record.yuJiJinE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beiZhu != null" >
+        bei_zhu = #{record.beiZhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_zhong_zhi
+    set zid = #{record.zid,jdbcType=INTEGER},
+      zz_name = #{record.zzName,jdbcType=VARCHAR},
+      dkid = #{record.dkid,jdbcType=INTEGER},
+      zuo_wu = #{record.zuoWu,jdbcType=VARCHAR},
+      huan_jin = #{record.huanJin,jdbcType=VARCHAR},
+      shi_jian = #{record.shiJian,jdbcType=VARCHAR},
+      mian_ji = #{record.mianJi,jdbcType=VARCHAR},
+      yu_ji_jin_e = #{record.yuJiJinE,jdbcType=VARCHAR},
+      uid = #{record.uid,jdbcType=VARCHAR},
+      bei_zhu = #{record.beiZhu,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ZhongZhi.entity.ZhongZhi" >
+    update t_zhong_zhi
+    <set >
+      <if test="zzName != null" >
+        zz_name = #{zzName,jdbcType=VARCHAR},
+      </if>
+      <if test="dkid != null" >
+        dkid = #{dkid,jdbcType=INTEGER},
+      </if>
+      <if test="zuoWu != null" >
+        zuo_wu = #{zuoWu,jdbcType=VARCHAR},
+      </if>
+      <if test="huanJin != null" >
+        huan_jin = #{huanJin,jdbcType=VARCHAR},
+      </if>
+      <if test="shiJian != null" >
+        shi_jian = #{shiJian,jdbcType=VARCHAR},
+      </if>
+      <if test="mianJi != null" >
+        mian_ji = #{mianJi,jdbcType=VARCHAR},
+      </if>
+      <if test="yuJiJinE != null" >
+        yu_ji_jin_e = #{yuJiJinE,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="beiZhu != null" >
+        bei_zhu = #{beiZhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where zid = #{zid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ZhongZhi.entity.ZhongZhi" >
+    update t_zhong_zhi
+    set zz_name = #{zzName,jdbcType=VARCHAR},
+      dkid = #{dkid,jdbcType=INTEGER},
+      zuo_wu = #{zuoWu,jdbcType=VARCHAR},
+      huan_jin = #{huanJin,jdbcType=VARCHAR},
+      shi_jian = #{shiJian,jdbcType=VARCHAR},
+      mian_ji = #{mianJi,jdbcType=VARCHAR},
+      yu_ji_jin_e = #{yuJiJinE,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      bei_zhu = #{beiZhu,jdbcType=VARCHAR}
+    where zid = #{zid,jdbcType=INTEGER}
+  </update>
+</mapper>

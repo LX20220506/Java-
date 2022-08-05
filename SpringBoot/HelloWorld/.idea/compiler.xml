@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="SpringBoot-test" />
+        <module name="Boot01" />
+        <module name="Boot02-AdminServer" />
+        <module name="Boot02" />
+        <module name="HelloWorld" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Boot01" options="-parameters" />
+      <module name="Boot02" options="-parameters" />
+      <module name="Boot02-AdminServer" options="-parameters" />
+      <module name="HelloWorld" options="-parameters" />
+      <module name="SpringBoot-test" options="-parameters" />
+    </option>
+  </component>
+</project>

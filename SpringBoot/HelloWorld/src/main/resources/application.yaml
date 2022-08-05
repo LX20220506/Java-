@@ -1,0 +1,7 @@
+person:
+  user-name: tom
+  interests: [一,二,三]
+  animal: [1,2,3,4]
+  score: {name: tom,age: 20}
+  all-pets:
+    sick: [{name: tomcat,weight: 20}]

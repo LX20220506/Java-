@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--扫描包；-->
+    <context:component-scan base-package="com.ZhongZhi">
+        <!--去除对controller注解的扫描，该扫描有springMVC完成-->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--引入资源文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+
+    <!--添加源-->
+    <bean name="dataSource"  class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+
+    <!--配置SqlSessionFactoryBean工厂的bean-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--指定数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--设置类型别名的包-->
+        <property name="typeAliasesPackage" value="com.ZhongZhi.entity"></property>
+        <!--设置mybatis的核心配置文件（可以没有）-->
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+    </bean>
+
+    <!--设置MapperScannerConfigurer，可以直接注入Mapper接口的映射对象-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--设置要映射的包-->
+        <property name="basePackage" value="com.ZhongZhi.mapper"/>
+    </bean>
+
+</beans>
